@@ -1,0 +1,189 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}À Propos - {{ parent() }}{% endblock %}
+
+{% block body %}
+<!-- Hero Section -->
+<section class="bg-gradient-to-br from-black via-gray-900 to-black text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            À Propos d'AFRICAN TELECOM
+        </h1>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+            Découvrez notre histoire, notre mission et notre vision pour l'avenir technologique de la RDC
+        </p>
+    </div>
+</section>
+
+<!-- Company Story -->
+<section class="py-16 bg-gradient-to-b from-white to-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl md:text-4xl font-bold text-black mb-6">Notre Histoire</h2>
+                <p class="text-gray-600 text-lg mb-6">
+                    <strong>AFRICAN TELECOM</strong> est une startup informatique légalement enregistrée en République Démocratique du Congo depuis le <strong>21 septembre 2021</strong>.
+                </p>
+                <p class="text-gray-600 text-lg mb-6">
+                    Nous offrons une gamme de services à forte valeur ajoutée, incluant les services d'appareils technologiques aux utilisateurs, la sécurisation et maintenance des infrastructures de réseaux sans fil, l'assistance informatique et l'incubation pour d'autres établissements du domaine informatique.
+                </p>
+                <p class="text-gray-600 text-lg">
+                    Notre vision est de promouvoir l'entrepreneuriat des petites entreprises lancées par les jeunes afin de faciliter la lutte contre le manque d'emploi.
+                </p>
+            </div>
+            <div class="bg-gradient-to-br from-black to-gray-900 rounded-lg p-8 text-white">
+                <div class="text-center">
+                    <div class="text-6xl mb-4">🏢</div>
+                    <h3 class="text-2xl font-bold mb-4">Depuis 2021</h3>
+                    <p class="text-gray-300">
+                        Une startup innovante au service de la transformation digitale en République Démocratique du Congo
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Timeline -->
+<section class="py-16 bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Notre Parcours</h2>
+        </div>
+        
+        <div class="relative">
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gray-600 h-full"></div>
+            
+            {% for item in timeline %}
+            <div class="relative mb-12 {% if loop.index is odd %}lg:flex-row{% else %}lg:flex-row-reverse{% endif %} flex flex-col lg:flex items-center">
+                <div class="lg:w-1/2 {% if loop.index is odd %}lg:pr-8 lg:text-right{% else %}lg:pl-8 lg:text-left{% endif %}">
+                    <div class="bg-gradient-to-br from-gray-800 to-black rounded-lg p-6 shadow-xl">
+                        <div class="text-2xl font-bold text-gray-300 mb-2">{{ item.year }}</div>
+                        <div class="text-sm text-gray-400 mb-3">{{ item.date }}</div>
+                        <h3 class="text-xl font-bold mb-3">{{ item.title }}</h3>
+                        <p class="text-gray-300">{{ item.description }}</p>
+                    </div>
+                </div>
+                
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rounded-full border-4 border-gray-600 z-10"></div>
+                
+                <div class="lg:w-1/2"></div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Mission & Vision -->
+<section class="py-16 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="bg-white rounded-lg shadow-lg p-8 border border-gray-100">
+                <div class="text-4xl mb-4 text-center">🎯</div>
+                <h3 class="text-2xl font-bold text-black mb-4 text-center">Notre Mission</h3>
+                <p class="text-gray-600 text-center">
+                    Promouvoir des initiatives d'autonomisation socio-économique pouvant renforcer l'employabilité des jeunes et contribuer à leur valeur ajoutée dans l'Est de la RDC.
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-8 border border-gray-100">
+                <div class="text-4xl mb-4 text-center">👁️</div>
+                <h3 class="text-2xl font-bold text-black mb-4 text-center">Notre Vision</h3>
+                <p class="text-gray-600 text-center">
+                    Promouvoir l'entrepreneuriat des petites entreprises lancées par les jeunes afin de faciliter la lutte contre le manque d'emploi.
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-8 border border-gray-100">
+                <div class="text-4xl mb-4 text-center">⚡</div>
+                <h3 class="text-2xl font-bold text-black mb-4 text-center">Nos Valeurs</h3>
+                <p class="text-gray-600 text-center">
+                    Innovation, formation inclusive, autonomisation des jeunes et intégration des nouvelles technologies de l'information et de la communication.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="py-16 bg-gradient-to-r from-black via-gray-900 to-black text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Notre Équipe</h2>
+            <p class="text-gray-300 text-lg max-w-2xl mx-auto">
+                Une équipe passionnée et dédiée à la transformation digitale
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {% for member in team %}
+            <div class="bg-gradient-to-br from-gray-800 to-black rounded-lg p-6 text-center">
+                <div class="text-4xl mb-4">👥</div>
+                <h3 class="text-xl font-bold mb-2">{{ member.name }}</h3>
+                <p class="text-gray-400 mb-3">{{ member.role }}</p>
+                <p class="text-gray-300 text-sm">{{ member.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Objectives Section -->
+<section class="py-16 bg-gradient-to-b from-white to-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-black mb-4">Nos Objectifs</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
+                <div class="flex items-start">
+                    <div class="bg-black text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">1</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-black mb-3">Autonomisation Socio-économique</h3>
+                        <p class="text-gray-600">
+                            Promouvoir des initiatives d'autonomisation socio-économique pouvant renforcer l'employabilité des jeunes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
+                <div class="flex items-start">
+                    <div class="bg-black text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">2</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-black mb-3">Formation Technologique</h3>
+                        <p class="text-gray-600">
+                            Faciliter l'intégration des nouvelles technologies de l'information et de la communication par la formation des jeunes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
+                <div class="flex items-start">
+                    <div class="bg-black text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">3</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-black mb-3">Égalité des Genres</h3>
+                        <p class="text-gray-600">
+                            Formation des jeunes filles et garçons à une maîtrise de la manipulation informatique.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
+                <div class="flex items-start">
+                    <div class="bg-black text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">4</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-black mb-3">Valeur Ajoutée Régionale</h3>
+                        <p class="text-gray-600">
+                            Contribuer à la valeur ajoutée des jeunes dans l'Est de la République Démocratique du Congo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

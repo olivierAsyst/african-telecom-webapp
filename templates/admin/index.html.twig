@@ -1,0 +1,173 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration - {{ parent() }}{% endblock %}
+
+{% block body %}
+<!-- Admin Header -->
+<section class="bg-gradient-to-br from-black via-gray-900 to-black text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between">
+            <div>
+                <h1 class="text-3xl md:text-4xl font-bold mb-2">Administration</h1>
+                <p class="text-gray-300">Gestion des activités et paramètres du site</p>
+            </div>
+            <div class="text-4xl">⚙️</div>
+        </div>
+    </div>
+</section>
+
+<!-- Flash Messages -->
+{% for type, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+            <div class="alert alert-{{ type }} bg-{% if type == 'success' %}green{% elseif type == 'error' %}red{% else %}blue{% endif %}-100 border border-{% if type == 'success' %}green{% elseif type == 'error' %}red{% else %}blue{% endif %}-400 text-{% if type == 'success' %}green{% elseif type == 'error' %}red{% else %}blue{% endif %}-700 px-4 py-3 rounded relative mb-4">
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+{% endfor %}
+
+<!-- Stats Dashboard -->
+<section class="py-8 bg-gradient-to-b from-white to-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm font-medium">Total Activités</p>
+                        <p class="text-3xl font-bold text-black">{{ stats.total_activities }}</p>
+                    </div>
+                    <div class="text-3xl">📊</div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm font-medium">Activités Actives</p>
+                        <p class="text-3xl font-bold text-green-600">{{ stats.active_activities }}</p>
+                    </div>
+                    <div class="text-3xl">✅</div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm font-medium">En Cours</p>
+                        <p class="text-3xl font-bold text-blue-600">{{ stats.pending_activities }}</p>
+                    </div>
+                    <div class="text-3xl">⏳</div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm font-medium">En Développement</p>
+                        <p class="text-3xl font-bold text-yellow-600">{{ stats.development_activities }}</p>
+                    </div>
+                    <div class="text-3xl">🚧</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Actions -->
+<section class="py-8 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-black mb-6">Actions Rapides</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <a href="{{ path('admin_activities') }}" class="bg-white rounded-lg shadow-lg p-6 border border-gray-100 hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                <div class="flex items-center">
+                    <div class="text-3xl mr-4">📋</div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-black">Gérer les Activités</h3>
+                        <p class="text-gray-600 text-sm">Voir, modifier et supprimer les activités</p>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="{{ path('admin_activities_add') }}" class="bg-white rounded-lg shadow-lg p-6 border border-gray-100 hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                <div class="flex items-center">
+                    <div class="text-3xl mr-4">➕</div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-black">Ajouter une Activité</h3>
+                        <p class="text-gray-600 text-sm">Créer une nouvelle activité</p>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="{{ path('admin_settings') }}" class="bg-white rounded-lg shadow-lg p-6 border border-gray-100 hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                <div class="flex items-center">
+                    <div class="text-3xl mr-4">⚙️</div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-black">Paramètres</h3>
+                        <p class="text-gray-600 text-sm">Configurer les paramètres du site</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Recent Activities -->
+<section class="py-8 bg-gradient-to-b from-white to-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-black">Activités Récentes</h2>
+            <a href="{{ path('admin_activities') }}" class="text-gray-600 hover:text-black transition duration-300">Voir tout →</a>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-lg border border-gray-100">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Activité</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Catégorie</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        {% for activity in activities|slice(0, 5) %}
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="text-2xl mr-3">{{ activity.image }}</div>
+                                    <div>
+                                        <div class="text-sm font-medium text-black">{{ activity.title }}</div>
+                                        <div class="text-sm text-gray-500">{{ activity.description|slice(0, 50) }}...</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">
+                                    {{ activity.category }}
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full 
+                                    {% if activity.status == 'Actif' %}bg-green-100 text-green-800
+                                    {% elseif activity.status == 'En cours' %}bg-blue-100 text-blue-800
+                                    {% elseif activity.status == 'En développement' %}bg-yellow-100 text-yellow-800
+                                    {% else %}bg-gray-100 text-gray-800{% endif %}">
+                                    {{ activity.status }}
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <a href="{{ path('admin_activities_edit', {id: activity.id}) }}" class="text-blue-600 hover:text-blue-900 mr-3">Modifier</a>
+                                <a href="{{ path('admin_activities_delete', {id: activity.id}) }}" class="text-red-600 hover:text-red-900" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette activité ?')">Supprimer</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

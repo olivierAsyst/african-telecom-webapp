@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - {{ parent() }}{% endblock %}
+
+{% block body %}
+<!-- Hero Section -->
+<section class="bg-gradient-to-br from-black via-gray-900 to-black text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                AFRICAN TELECOM
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-4xl mx-auto">
+                Startup informatique légalement enregistrée en République Démocratique du Congo depuis le 21 septembre 2021
+            </p>
+            <p class="text-lg mb-10 text-gray-400 max-w-3xl mx-auto">
+                Nous offrons une gamme de services à forte valeur ajoutée : services d'appareils technologiques, 
+                sécurisation et maintenance des infrastructures de réseaux sans fil, assistance informatique et incubation.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ path('activities') }}" class="bg-gradient-to-r from-gray-600 to-gray-800 hover:from-gray-700 hover:to-gray-900 text-white px-8 py-3 rounded-lg font-semibold transition duration-300 transform hover:scale-105">
+                    Découvrir nos activités
+                </a>
+                <a href="{{ path('contact') }}" class="border-2 border-gray-400 text-gray-300 hover:bg-gray-800 hover:text-white px-8 py-3 rounded-lg font-semibold transition duration-300">
+                    Nous contacter
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-16 bg-gradient-to-b from-white to-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-black mb-4">Nos Services</h2>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                Des solutions technologiques innovantes pour accompagner votre transformation digitale
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {% for service in services %}
+            <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border border-gray-100">
+                <div class="text-4xl mb-4 text-center">{{ service.icon }}</div>
+                <h3 class="text-xl font-semibold text-black mb-3 text-center">{{ service.title }}</h3>
+                <p class="text-gray-600 text-center">{{ service.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Vision & Mission Section -->
+<section class="py-16 bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                    Notre Vision
+                </h2>
+                <p class="text-gray-300 text-lg mb-6">
+                    Promouvoir l'entrepreneuriat des petites entreprises lancées par les jeunes afin de faciliter 
+                    la lutte contre le manque d'emploi.
+                </p>
+                <h3 class="text-2xl font-semibold mb-4 text-gray-200">Notre Objectif</h3>
+                <ul class="space-y-3 text-gray-300">
+                    <li class="flex items-start">
+                        <span class="text-gray-400 mr-3">•</span>
+                        Promouvoir des initiatives d'autonomisation socio-économique
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-gray-400 mr-3">•</span>
+                        Renforcer l'employabilité des jeunes
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-gray-400 mr-3">•</span>
+                        Faciliter l'intégration des nouvelles technologies
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-gray-400 mr-3">•</span>
+                        Contribuer à la valeur ajoutée des jeunes dans l'Est de la RDC
+                    </li>
+                </ul>
+            </div>
+            <div class="text-center">
+                <div class="bg-gradient-to-br from-gray-800 to-black rounded-lg p-8 shadow-xl">
+                    <div class="text-6xl mb-4">🚀</div>
+                    <h3 class="text-2xl font-bold mb-4">Innovation & Formation</h3>
+                    <p class="text-gray-300">
+                        Formation des jeunes filles et garçons à la maîtrise de la manipulation informatique 
+                        et des nouvelles technologies de l'information et de la communication.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-16 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-black mb-4">Nos Réalisations</h2>
+        </div>
+        
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {% for stat in stats %}
+            <div class="text-center bg-white rounded-lg shadow-lg p-6 border border-gray-100">
+                <div class="text-3xl md:text-4xl font-bold text-black mb-2">{{ stat.number }}</div>
+                <div class="text-gray-600 font-medium">{{ stat.label }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-gradient-to-r from-black via-gray-900 to-black text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Prêt à transformer votre avenir numérique ?</h2>
+        <p class="text-xl text-gray-300 mb-8">
+            Rejoignez-nous dans notre mission de promotion de l'entrepreneuriat technologique en RDC
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{{ path('contact') }}" class="bg-gradient-to-r from-gray-600 to-gray-800 hover:from-gray-700 hover:to-gray-900 text-white px-8 py-3 rounded-lg font-semibold transition duration-300 transform hover:scale-105">
+                Contactez-nous
+            </a>
+            <a href="{{ path('about') }}" class="border-2 border-gray-400 text-gray-300 hover:bg-gray-800 hover:text-white px-8 py-3 rounded-lg font-semibold transition duration-300">
+                En savoir plus
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

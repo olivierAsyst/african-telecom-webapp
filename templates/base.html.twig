@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}AFRICAN TELECOM{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="images/logos.png" type="image/x-icon">
+
+        <!-- Tailwind CSS CDN -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: '#000000',
+                            secondary: '#ffffff',
+                            accent: '#6b7280'
+                        }
+                    }
+                }
+            }
+        </script>
+
+        {% block stylesheets %}
+        {% endblock %}
+
+        {% block javascripts %}
+        {% endblock %}
+    </head>
+    <body class="bg-white text-black min-h-screen">
+        <!-- Navigation -->
+        <nav class="bg-gradient-to-r from-black via-gray-900 to-black shadow-lg sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center">
+                        <a href="{{ path('home') }}" class="flex items-center text-white font-bold text-xl gap-4">
+                            <img src="images/logo.jpg" class="w-[75px]" alt="" srcset="">
+                            AFRICAN TELECOM
+                        </a>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="{{ path('home') }}" class="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300">Accueil</a>
+                            <a href="{{ path('activities') }}" class="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300">Nos Activités</a>
+                            <a href="{{ path('about') }}" class="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300">À Propos</a>
+                            <a href="{{ path('contact') }}" class="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300">Contact</a>
+                            {# <a href="{{ path('admin') }}" class="bg-gradient-to-r from-gray-600 to-gray-800 text-white px-3 py-2 rounded-md text-sm font-medium hover:from-gray-700 hover:to-gray-900 transition duration-300">Admin</a> #}
+                        </div>
+                    </div>
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden">
+                        <button type="button" class="text-white hover:text-gray-300 focus:outline-none focus:text-gray-300" onclick="toggleMobileMenu()">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile menu -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-900">
+                    <a href="{{ path('home') }}" class="text-white hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">Accueil</a>
+                    <a href="{{ path('activities') }}" class="text-white hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">Nos Activités</a>
+                    <a href="{{ path('about') }}" class="text-white hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">À Propos</a>
+                    <a href="{{ path('contact') }}" class="text-white hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+                    <a href="{{ path('admin') }}" class="bg-gradient-to-r from-gray-600 to-gray-800 text-white block px-3 py-2 rounded-md text-base font-medium">Admin</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <main class="flex-1">
+            {% block body %}{% endblock %}
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gradient-to-r from-black via-gray-900 to-black text-white py-8 mt-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <div class="flex items-center mb-4 gap-5">
+                            <img src="images/logo.jpg" class="w-[100px]" alt="" srcset="">
+                            <h3 class="text-lg font-semibold mb-4">AFRICAN TELECOM</h3>
+                        </div>
+                        <p class="text-gray-300">Startup informatique en République Démocratique du Congo, spécialisée dans les services technologiques à forte valeur ajoutée.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Liens Rapides</h3>
+                        <ul class="space-y-2">
+                            <li><a href="{{ path('home') }}" class="text-gray-300 hover:text-white transition duration-300">Accueil</a></li>
+                            <li><a href="{{ path('activities') }}" class="text-gray-300 hover:text-white transition duration-300">Nos Activités</a></li>
+                            <li><a href="{{ path('about') }}" class="text-gray-300 hover:text-white transition duration-300">À Propos</a></li>
+                            <li><a href="{{ path('contact') }}" class="text-gray-300 hover:text-white transition duration-300">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                        <p class="text-gray-300">République Démocratique du Congo</p>
+                        <p class="text-gray-300">Enregistrée depuis le 21 septembre 2021</p>
+                    </div>
+                </div>
+                <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                    <p class="text-gray-300">&copy; {{ "now"|date("Y") }} AFRICAN TELECOM. Tous droits réservés.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            function toggleMobileMenu() {
+                const menu = document.getElementById('mobile-menu');
+                menu.classList.toggle('hidden');
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Activités - {{ parent() }}{% endblock %}
+
+{% block body %}
+<!-- Admin Header -->
+<section class="bg-gradient-to-br from-black via-gray-900 to-black text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between">
+            <div>
+                <h1 class="text-3xl md:text-4xl font-bold mb-2">Gestion des Activités</h1>
+                <p class="text-gray-300">Gérer toutes les activités d'AFRICAN TELECOM</p>
+            </div>
+            <a href="{{ path('admin_activities_add') }}" class="bg-gradient-to-r from-gray-600 to-gray-800 hover:from-gray-700 hover:to-gray-900 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 transform hover:scale-105">
+                ➕ Ajouter une activité
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Flash Messages -->
+{% for type, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+            <div class="alert alert-{{ type }} bg-{% if type == 'success' %}green{% elseif type == 'error' %}red{% else %}blue{% endif %}-100 border border-{% if type == 'success' %}green{% elseif type == 'error' %}red{% else %}blue{% endif %}-400 text-{% if type == 'success' %}green{% elseif type == 'error' %}red{% else %}blue{% endif %}-700 px-4 py-3 rounded relative mb-4">
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+{% endfor %}
+
+<!-- Activities List -->
+<section class="py-8 bg-gradient-to-b from-white to-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-lg shadow-lg border border-gray-100">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Activité</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Catégorie</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        {% for activity in activities %}
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="text-2xl mr-3">{{ activity.image }}</div>
+                                    <div>
+                                        <div class="text-sm font-medium text-black">{{ activity.title }}</div>
+                                        <div class="text-sm text-gray-500">{{ activity.description|slice(0, 80) }}...</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">
+                                    {{ activity.category }}
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full 
+                                    {% if activity.status == 'Actif' %}bg-green-100 text-green-800
+                                    {% elseif activity.status == 'En cours' %}bg-blue-100 text-blue-800
+                                    {% elseif activity.status == 'En développement' %}bg-yellow-100 text-yellow-800
+                                    {% else %}bg-gray-100 text-gray-800{% endif %}">
+                                    {{ activity.status }}
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {% if activity.created_at %}
+                                    {{ activity.created_at|date('d/m/Y') }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <a href="{{ path('admin_activities_edit', {id: activity.id}) }}" class="text-blue-600 hover:text-blue-900 mr-3">Modifier</a>
+                                <a href="{{ path('admin_activities_delete', {id: activity.id}) }}" class="text-red-600 hover:text-red-900" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette activité ?')">Supprimer</a>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="5" class="px-6 py-4 text-center text-gray-500">
+                                Aucune activité trouvée. <a href="{{ path('admin_activities_add') }}" class="text-blue-600 hover:text-blue-900">Ajouter la première activité</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Back to Admin -->
+<section class="py-8 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <a href="{{ path('admin') }}" class="bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black text-white px-6 py-3 rounded-lg font-semibold transition duration-300 transform hover:scale-105">
+            ← Retour au tableau de bord
+        </a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,150 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos Activités - {{ parent() }}{% endblock %}
+
+{% block body %}
+<!-- Hero Section -->
+<section class="bg-gradient-to-br from-black via-gray-900 to-black text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            Nos Activités
+        </h1>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+            Découvrez nos services à forte valeur ajoutée et nos initiatives pour l'autonomisation des jeunes
+        </p>
+    </div>
+</section>
+
+<!-- Activities Grid -->
+<section class="py-16 bg-gradient-to-b from-white to-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for activity in activities %}
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border border-gray-100">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-4xl">{{ activity.image }}</div>
+                        <div class="flex items-center space-x-2">
+                            <span class="px-3 py-1 text-xs font-semibold rounded-full 
+                                {% if activity.status == 'Actif' %}bg-green-100 text-green-800
+                                {% elseif activity.status == 'En cours' %}bg-blue-100 text-blue-800
+                                {% elseif activity.status == 'En développement' %}bg-yellow-100 text-yellow-800
+                                {% else %}bg-gray-100 text-gray-800{% endif %}">
+                                {{ activity.status }}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold text-black mb-3">{{ activity.title }}</h3>
+                    <p class="text-gray-600 mb-4">{{ activity.description }}</p>
+                    
+                    <div class="flex items-center justify-between">
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full font-medium">
+                            {{ activity.category }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Categories Filter -->
+<section class="py-16 bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Nos Domaines d'Expertise</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-gradient-to-br from-gray-800 to-black rounded-lg p-6 text-center">
+                <div class="text-4xl mb-4">🎓</div>
+                <h3 class="text-xl font-bold mb-3">Formation</h3>
+                <p class="text-gray-300">Formation des jeunes aux technologies de l'information</p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-gray-800 to-black rounded-lg p-6 text-center">
+                <div class="text-4xl mb-4">🔧</div>
+                <h3 class="text-xl font-bold mb-3">Services Techniques</h3>
+                <p class="text-gray-300">Maintenance et sécurisation des infrastructures</p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-gray-800 to-black rounded-lg p-6 text-center">
+                <div class="text-4xl mb-4">🚀</div>
+                <h3 class="text-xl font-bold mb-3">Incubation</h3>
+                <p class="text-gray-300">Accompagnement des startups informatiques</p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-gray-800 to-black rounded-lg p-6 text-center">
+                <div class="text-4xl mb-4">💼</div>
+                <h3 class="text-xl font-bold mb-3">Autonomisation</h3>
+                <p class="text-gray-300">Renforcement de l'employabilité des jeunes</p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-gray-800 to-black rounded-lg p-6 text-center">
+                <div class="text-4xl mb-4">📱</div>
+                <h3 class="text-xl font-bold mb-3">Commerce</h3>
+                <p class="text-gray-300">Vente d'appareils technologiques</p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-gray-800 to-black rounded-lg p-6 text-center">
+                <div class="text-4xl mb-4">🌐</div>
+                <h3 class="text-xl font-bold mb-3">Innovation</h3>
+                <p class="text-gray-300">Intégration des nouvelles technologies</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Impact Section -->
+<section class="py-16 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-black mb-4">Notre Impact</h2>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                Contribuer à la valeur ajoutée des jeunes dans l'Est de la RDC
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h3 class="text-2xl font-bold text-black mb-6">Nos Objectifs</h3>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <div class="bg-black text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-4 mt-1">1</div>
+                        <div>
+                            <h4 class="font-semibold text-black">Autonomisation Socio-économique</h4>
+                            <p class="text-gray-600">Promouvoir des initiatives renforçant l'employabilité des jeunes</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="bg-black text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-4 mt-1">2</div>
+                        <div>
+                            <h4 class="font-semibold text-black">Intégration Technologique</h4>
+                            <p class="text-gray-600">Faciliter l'adoption des nouvelles technologies de l'information</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="bg-black text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-4 mt-1">3</div>
+                        <div>
+                            <h4 class="font-semibold text-black">Formation Inclusive</h4>
+                            <p class="text-gray-600">Formation des jeunes filles et garçons à la manipulation informatique</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="bg-gradient-to-br from-black to-gray-900 rounded-lg p-8 text-white">
+                <h3 class="text-2xl font-bold mb-6">Rejoignez-nous</h3>
+                <p class="text-gray-300 mb-6">
+                    Ensemble, construisons un avenir numérique prospère pour la jeunesse congolaise
+                </p>
+                <a href="{{ path('contact') }}" class="bg-gradient-to-r from-gray-600 to-gray-800 hover:from-gray-700 hover:to-gray-900 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 transform hover:scale-105 inline-block">
+                    Contactez-nous
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
